@@ -1,0 +1,24 @@
+---
+
+- hosts: all
+  gather_facts: no
+  pre_tasks:
+    - name: もしPythonがなかったらインストール
+      become: true
+      raw: test -e /usr/bin/python || (apt-get -y update && apt-get install -y python-minimal)
+      changed_when: False
+    - name: Gather facts
+      setup:
+  roles:
+#    - docker
+#    - dev_packages
+#    - jp_timezone
+#
+## replicasを先にしたい
+#- hosts: replicas
+#  roles:
+#    - ssh_key
+#
+#- hosts: master
+#  roles:
+#    - ssh_key
