@@ -14,8 +14,9 @@
     - galaxy/geerlingguy.docker
     - dev_packages
     - jp_timezone
+    - execute_user
 
-## replicasを先にしたい
+# replicasを先にしたい
 #- hosts: replicas
 #  roles:
 #    - ssh_key
