@@ -1,0 +1,36 @@
+= MasterとReplica(Slave)
+
+----
+.
+├── Makefile
+├── README.adoc
+├── Vagrantfile
+├── inventories
+│   └── vagrant         # <- 環境毎にディレクトリを切る
+│       ├── group_vars
+│       │   └── all.yml
+│       └── hosts.yml
+├── replica_pub_keys
+│   ├── replica-1.pub # <- gitリポジトリでは管理しない
+│   └── replica-2.pub # <- 同上
+├── roles
+│   ├── dev_packages
+│   │   └── tasks
+│   │       └── main.yml
+│   ├── execute_user
+│   │   └── tasks
+│   │       └── main.yml
+│   ├── galaxy
+│   │   └── geerlingguy.docker
+│   │       ├─ galaxyなので割愛
+│   ├── jp_timezone
+│   │   └── tasks
+│   │       └── main.yml
+│   ├── ssh_key
+│   │   └── tasks
+│   │       └── main.yml
+│   └── test
+│       └── tasks
+│           └── main.yml
+└── setup.yml
+----
