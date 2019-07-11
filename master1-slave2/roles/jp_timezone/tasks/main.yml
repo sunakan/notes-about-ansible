@@ -1,0 +1,5 @@
+---
+
+- name: TimeZoneをJSTにする
+  timezone:
+    name: Asia/Tokyo

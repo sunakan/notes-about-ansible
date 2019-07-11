@@ -4,7 +4,7 @@
   gather_facts: no
   pre_tasks:
     - name: もしPythonがなかったらインストール
-      become: true
+      become: yes
       raw: test -e /usr/bin/python || (apt-get -y update && apt-get install -y python-minimal)
       changed_when: False
     - name: Gather facts
@@ -13,8 +13,8 @@
   roles:
     - galaxy/geerlingguy.docker
     - dev_packages
-#    - jp_timezone
-#
+    - jp_timezone
+
 ## replicasを先にしたい
 #- hosts: replicas
 #  roles:
