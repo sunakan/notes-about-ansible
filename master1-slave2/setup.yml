@@ -12,7 +12,7 @@
   become: yes
   roles:
     - galaxy/geerlingguy.docker
-#    - dev_packages
+    - dev_packages
 #    - jp_timezone
 #
 ## replicasを先にしたい

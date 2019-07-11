@@ -1,0 +1,13 @@
+---
+
+- name: 開発で最低限欲しいパッケージを入れる
+  apt:
+    name:
+      - vim
+      - git
+      - tmux
+      - make
+      - tree
+    update_cache: yes
+    cache_valid_time: 3600
+  when: ansible_os_family == "Debian"
