@@ -1,0 +1,39 @@
+---
+
+# 受け取る側
+- name: 公開鍵の配布
+  become: yes
+  authorized_key:
+    user: "{{ execute_user.name }}"
+    key: "{{ lookup('file', '{{ item }}') }}"
+  with_fileglob:
+    - "replica_pub_keys/*.pub"
+
+# 作る側
+- name: 公開鍵の有無チェック
+  become: yes
+  stat:
+    path: "/home/{{ execute_user.name }}/.ssh/{{ app.name }}.pub"
+  register: pub_key
+  when: "'replicas' in group_names"
+
+- name: ssh-keyの作成(存在するならSkip)
+  become: yes
+  command: "ssh-keygen -t ed25519 -C \"{{ inventory_hostname }}\" -f /home/{{ execute_user.name }}/.ssh/{{ app.name }} -N \"\""
+  when:
+    - "'replicas' in group_names"
+    - not pub_key.stat.exists
+
+- name: ssh-keyの秘密鍵のmodeを変更
+  become: yes
+  file:
+    path: "/home/{{ execute_user.name }}/.ssh/{{ app.name }}"
+    mode: 0644
+  when: "'replicas' in group_names"
+
+- name: 公開鍵のダウンロード
+  fetch:
+    src: "/home/{{ execute_user.name }}/.ssh/{{ app.name }}.pub"
+    dest: "./replica_pub_keys/{{ inventory_hostname }}.pub"
+    flat: true
+  when: "'replicas' in group_names"

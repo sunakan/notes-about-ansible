@@ -6,7 +6,6 @@ app:
   repo_user: sunakan
   deploy_branch: master
   dest_path: /var/local/sunakan-app
-  execute_user: sunakan-dev
 
 execute_user:
   name: sunakan-dev

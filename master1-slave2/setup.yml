@@ -17,10 +17,10 @@
     - execute_user
 
 # replicasを先にしたい
-#- hosts: replicas
-#  roles:
-#    - ssh_key
-#
-#- hosts: master
-#  roles:
-#    - ssh_key
+- hosts: replicas
+  roles:
+    - ssh_key
+
+- hosts: master
+  roles:
+    - ssh_key
