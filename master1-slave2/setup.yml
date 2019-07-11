@@ -9,8 +9,9 @@
       changed_when: False
     - name: Gather facts
       setup:
+  become: yes
   roles:
-#    - docker
+    - galaxy/geerlingguy.docker
 #    - dev_packages
 #    - jp_timezone
 #
