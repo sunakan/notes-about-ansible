@@ -11,9 +11,9 @@ execute_user:
   name: sunakan-dev
   uid: 10001
   gid: 10001
-  debian_groups: "staff,sudo"
-  redhat_groups: "users,wheel"
-  state: "present"
+  debian_groups: staff,sudo
+  redhat_groups: users,wheel
+  state: present
   password: !vault |
     $ANSIBLE_VAULT;1.1;AES256
     30333231313732656265613536363333333131636466666639303738306135613536613938663938
