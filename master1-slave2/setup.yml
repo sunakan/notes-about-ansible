@@ -12,9 +12,9 @@
   become: yes
   roles:
     - execute_user
-    #- galaxy/geerlingguy.docker
-    #- dev_packages
-    #- jp_timezone
+    - galaxy/geerlingguy.docker
+    - dev_packages
+    - jp_timezone
 
 # replicasを先にしたい
 - hosts: replicas
