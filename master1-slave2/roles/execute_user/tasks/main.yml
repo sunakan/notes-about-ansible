@@ -10,11 +10,10 @@
   become: yes
   user:
     name: "{{ execute_user.name }}"
-    password: "{{ execute_user.password | string | password_hash('sha512') }}"
     uid: "{{ execute_user.uid }}"
     group: "{{ execute_user.name }}"
     groups: "{% if ansible_os_family == 'Debian' %}{{ execute_user.debian_groups }}{% else %}{{ execute_user.redhat_groups }} {% endif %}" # サブグループ
     shell: /bin/bash
-    update_password: on_create
-    state: present
     createhome: yes
+    state: present
+    password: "{{ execute_user.password | string | password_hash('sha512') }}"

@@ -11,16 +11,18 @@
       setup:
   become: yes
   roles:
-    - galaxy/geerlingguy.docker
-    - dev_packages
-    - jp_timezone
     - execute_user
+    #- galaxy/geerlingguy.docker
+    #- dev_packages
+    #- jp_timezone
 
 # replicasを先にしたい
 - hosts: replicas
+  become: yes
   roles:
     - ssh_key
 
 - hosts: master
+  become: yes
   roles:
     - ssh_key
