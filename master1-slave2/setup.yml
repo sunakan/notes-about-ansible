@@ -11,8 +11,8 @@
       setup:
   become: yes
   roles:
-    - execute_user
     - galaxy/geerlingguy.docker
+    - execute_user
     - dev_packages
     - jp_timezone
 

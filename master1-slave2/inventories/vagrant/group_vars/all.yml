@@ -11,7 +11,7 @@ execute_user:
   name: sunakan-dev
   uid: 10001
   gid: 10001
-  debian_groups: staff,sudo
+  debian_groups: staff,sudo,docker
   redhat_groups: users,wheel
   state: present
   password: !vault |
