@@ -1,0 +1,10 @@
+---
+
+version: "3.7"
+
+services:
+  app:
+    image: digdag-ls
+    build:
+      context: .
+      dockerfile: Dockerfile
