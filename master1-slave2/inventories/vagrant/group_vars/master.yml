@@ -1,0 +1,4 @@
+---
+
+app:
+  docker_compose_file: docker-compose.master.yml
