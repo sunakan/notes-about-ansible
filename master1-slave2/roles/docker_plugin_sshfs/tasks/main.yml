@@ -1,0 +1,13 @@
+---
+
+- name: docker plugin vieux/sshfs があるかチェック
+  become: yes
+  shell: docker plugin ls | grep "vieux/sshfs"
+  register: plugin_check
+  failed_when: plugin_check.rc not in [0, 1]
+
+- name: docker plugin vieux/sshfs のインストール
+  become: yes
+  become_user: "{{ execute_user.name }}"
+  command: "docker plugin install --grant-all-permissions vieux/sshfs sshkey.source=$HOME/.ssh/"
+  when: plugin_check.rc == 1

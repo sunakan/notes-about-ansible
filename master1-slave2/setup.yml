@@ -20,6 +20,7 @@
 - hosts: replicas
   become: yes
   roles:
+    - docker_plugin_sshfs
     - ssh_key
 
 - hosts: master
