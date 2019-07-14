@@ -1,11 +1,20 @@
 ---
 
+docker_plugin:
+  netshare:
+    url: https://github.com/ContainX/docker-volume-netshare/releases/download
+    version: v0.35
+    deb: docker-volume-netshare_0.35_amd64.deb
+
 app:
   name: sunakan-app
-  src_repo: sunakan-repo
-  repo_user: sunakan
+  src_repo: https://github.com/sunakan/notes-about-ansible.git
   deploy_branch: master
   dest_path: /var/local/sunakan-app
+  version_dir: current
+  docker_compose_context: digdag-ls-docker
+  data_path: /var/hoge/fuga/data
+  env: vagrant
 
 execute_user:
   name: sunakan-dev

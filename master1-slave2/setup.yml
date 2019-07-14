@@ -15,6 +15,7 @@
     - execute_user
     - dev_packages
     - jp_timezone
+    - docker_plugin_netshare
 
 # replicasを先にしたい
 - hosts: replicas

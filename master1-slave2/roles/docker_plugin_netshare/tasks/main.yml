@@ -1,0 +1,25 @@
+---
+
+- name: docker-volume-netshareが入っているか確認
+  command: dpkg-query -W docker-volume-netshare
+  register: netshare_check
+  failed_when: netshare_check.rc > 1
+
+- name: Docker plugin netshare バイナリをDL(NASやEFSをdocker volumeでマウントするため)
+  become: yes
+  get_url:
+    url: "{{ docker_plugin.netshare.url }}/{{ docker_plugin.netshare.version }}/{{ docker_plugin.netshare.deb }}"
+    dest: "/tmp/{{ docker_plugin.netshare.deb }}"
+  register: resdir
+  when: netshare_check.rc == 1
+
+- name: "{{ docker_plugin.netshare.deb }} をinstall"
+  apt:
+    deb: "/tmp/{{ docker_plugin.netshare.deb }}"
+  when: netshare_check.rc == 1
+
+- name: service docker-volume-netshare start
+  service:
+    name: docker-volume-netshare
+    enabled: yes
+    state: started
