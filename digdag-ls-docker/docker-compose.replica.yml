@@ -8,3 +8,14 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    volumes:
+      - sshfs_volume:/var/hoge/fuga/data:ro
+
+volumes:
+  sshfs_volume:
+    name: sshfs_volume
+    driver: vieux/sshfs:latest
+    driver_opts:
+      sshcmd: ${SSHFS_USER}@${SSHFS_SRC_MASTER_HOST}:${SSHFS_SRC_PATH}
+      IdentityFile: /root/.ssh/${SSHFS_IDENTITY_FILE}
+      ro: ""
