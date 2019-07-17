@@ -17,6 +17,7 @@ RUN mkdir -p $INDEX_DATA_PATH \
   && chown $EXECUTE_USER $INDEX_DATA_PATH
 
 COPY entrypoint.sh /bin/
+RUN chmod +x /bin/entrypoint.sh
 
-ENTRYPOINT ["tint", "--", "/bin/entrypoint.sh"]
+ENTRYPOINT ["/bin/entrypoint.sh"]
 CMD ["bash"]
