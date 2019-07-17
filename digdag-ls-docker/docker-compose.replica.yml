@@ -10,6 +10,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - sshfs_volume:/var/hoge/fuga/data:ro
+      - $MOUNT_DATA:/var/a/b/c/data
 
 volumes:
   sshfs_volume:
