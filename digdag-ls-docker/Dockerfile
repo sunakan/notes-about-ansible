@@ -1,5 +1,8 @@
 FROM adoptopenjdk:11-jre-openj9-bionic
-WORKDIR /usr/local/my-digdag
+ARG WORKING_HOME="/usr/local/my-digdag"
+ARG DATA_HOME="/var/sunabako/"
+ENV WORKING_HOME=$WORKING_HOME
+ENV DATA_HOME=$DATA_HOME
 
 RUN apt-get update \
   && apt-get install -y vim make tree tzdata gosu
@@ -7,17 +10,11 @@ RUN apt-get update \
 RUN curl -o /usr/local/bin/digdag --create-dirs -L "https://dl.digdag.io/digdag-latest" \
   && chmod +x /usr/local/bin/digdag
 
-ENV EXECUTE_USER=sunakan-dev-25252
-ARG UID=25252
-ARG GID=25252
-RUN groupadd -g $GID $EXECUTE_USER && useradd -g $GID -u $UID $EXECUTE_USER
+WORKDIR WORKING_HOME
 
-ENV INDEX_DATA_PATH=/var/a/b/c/data
-RUN mkdir -p $INDEX_DATA_PATH \
-  && chown $EXECUTE_USER $INDEX_DATA_PATH
+COPY ./digdag-ls.dig ./
 
 COPY entrypoint.sh /bin/
 RUN chmod +x /bin/entrypoint.sh
-
 ENTRYPOINT ["/bin/entrypoint.sh"]
 CMD ["bash"]

@@ -1,0 +1,26 @@
+timezone: Asia/Tokyo
+
+schedule:
+  minutes_interval>: ${MINUTES_INTERVAL}
+
+_export:
+  plugin:
+    repositories:
+      - https://jitpack.io
+    dependencies:
+      - com.github.szyn:digdag-slack:0.1.4
+  webhook_url: ${SLACK_INCOMING_WEBHOOK_URL}
+
++step-01:
+  sh>: echo "hello"
+  _error:
+    _export:
+      text: "step-01で失敗しました"
+      color: "danger"
+    slack>: slack.yml
+
++step-02:
+  _export:
+    text: "成功!!!!!"
+    color: "good"
+  slack>: slack.yml
