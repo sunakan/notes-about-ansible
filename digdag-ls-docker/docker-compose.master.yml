@@ -9,6 +9,7 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
+      TZ: Asia/Tokyo
       IS_MASTER: "true"
       ENV: $ENV
       EXEC_USER: $EXEC_USER

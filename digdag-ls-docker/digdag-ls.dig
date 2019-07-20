@@ -12,7 +12,7 @@ _export:
   webhook_url: ${SLACK_INCOMING_WEBHOOK_URL}
 
 +step-01:
-  sh>: echo "hello"
+  sh>: touch $DATA_HOME/`date "+%Y%m%d_%Hh%Mm%Ss"`_`hostname`.demo
   _error:
     _export:
       text: "step-01で失敗しました"
