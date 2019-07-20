@@ -1,3 +1,6 @@
+setup:
+	mkdir -p tmp/var/suna/bako
+
 build:
 	docker-compose -f docker-compose.master.yml build
 bash:
