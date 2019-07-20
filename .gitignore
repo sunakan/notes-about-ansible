@@ -41,3 +41,4 @@ galaxy/
 
 .env
 .digdag
+tmp
