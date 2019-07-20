@@ -9,18 +9,21 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
-      UID: 10001
-      GID: 10001
+      TZ: Asia/Tokyo
+      IS_MASTER: "false"
+      ENV: $ENV
+      EXEC_USER: $EXEC_USER
+      EXEC_UID: $EXEC_UID
+      EXEC_GID: $EXEC_GID
     volumes:
-      - sshfs_volume:/var/hoge/fuga/data:ro
-      - $MOUNT_DATA:/var/a/b/c/data
+      - sshfs_volume:$DATA_HOME
 
 volumes:
   sshfs_volume:
     name: sshfs_volume
     driver: vieux/sshfs:latest
     driver_opts:
-      sshcmd: ${SSHFS_USER}@${SSHFS_SRC_MASTER_HOST}:${SSHFS_SRC_PATH}
+      sshcmd: ${SSHFS_USER}@${SSHFS_MASTER_HOST}:${DATA_HOME}
       IdentityFile: /root/.ssh/${SSHFS_IDENTITY_FILE}
       allow_other: ""
-      ro: ""
+      #ro: ""

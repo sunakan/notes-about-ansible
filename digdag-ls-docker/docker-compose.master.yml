@@ -16,6 +16,5 @@ services:
       EXEC_UID: $EXEC_UID
       EXEC_GID: $EXEC_GID
       #SLACK_INCOMING_WEBHOOK_URL: $SLACK_INCOMING_WEBHOOK_URL
-    working_dir: /app
     volumes:
-      - .:/app
+      - $HOST_SIDE_DATA_HOME:$DATA_HOME
