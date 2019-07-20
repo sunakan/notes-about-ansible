@@ -38,3 +38,6 @@ tags
 # End of https://www.gitignore.io/api/vim,ansible,vagrant
 galaxy/
 *.pub
+
+.env
+.digdag
