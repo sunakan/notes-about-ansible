@@ -20,3 +20,4 @@ COPY ./digdag-ls.dig ./
 COPY entrypoint.sh /bin/
 RUN chmod +x /bin/entrypoint.sh
 ENTRYPOINT ["/bin/entrypoint.sh"]
+CMD ["bash", "-c", "digdag scheduler -p ENV=$ENV"]
