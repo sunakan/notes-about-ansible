@@ -1,0 +1,5 @@
+---
+
+- hosts: master
+  roles:
+    - jinja2-test

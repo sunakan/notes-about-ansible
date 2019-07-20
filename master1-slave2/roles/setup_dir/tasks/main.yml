@@ -1,0 +1,10 @@
+---
+
+- name: アプリが使用するデータディレクトリを作成
+  become: yes
+  file:
+    path: "{{ app.data_path }}"
+    state: directory
+    owner: "{{ execute_user.name }}"
+    group: "{{ execute_user.name }}"
+    mode: 0744

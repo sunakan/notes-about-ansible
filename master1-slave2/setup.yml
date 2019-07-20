@@ -27,4 +27,5 @@
 - hosts: master
   become: yes
   roles:
+    - setup_dir
     - ssh_key

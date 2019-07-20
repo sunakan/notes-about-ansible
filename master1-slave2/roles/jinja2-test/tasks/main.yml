@@ -1,0 +1,5 @@
+---
+
+- name: 読み込む
+  debug:
+    msg: "{{ lookup('file', '../digdag-ls-docker/profile/env.vagrant').splitlines() }}"

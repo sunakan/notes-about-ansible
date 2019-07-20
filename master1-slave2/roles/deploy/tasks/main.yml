@@ -1,14 +1,5 @@
 ---
 
-- name: アプリが使用するデータディレクトリを作成
-  become: yes
-  file:
-    path: "{{ app.data_path }}"
-    state: directory
-    owner: "{{ execute_user.name }}"
-    group: "{{ execute_user.name }}"
-    mode: 0744
-
 - name: アプリ用ディレクトリを作成
   become: yes
   file:
@@ -20,7 +11,6 @@
 
 - name: git clone repository
   become: yes
-  become_user: "{{ execute_user.name }}"
   git:
     repo: "{{ app.src_repo }}"
     dest: "{{ app.dest_path }}/{{ app.version_dir }}"
@@ -28,14 +18,25 @@
 
 - name: docker-compose build
   become: yes
-  become_user: "{{ execute_user.name }}"
   command: "docker-compose -f {{ app.docker_compose_file }} build"
   args:
     chdir: "{{ app.dest_path }}/{{ app.version_dir }}/{{ app.docker_compose_context }}"
 
 - name: 実行環境(vagrant/alpha/beta/live)に合わせた.envの用意
   become: yes
-  become_user: "{{ execute_user.name }}"
   command: "cp profile/env.{{ app.env }} .env"
+  args:
+    chdir: "{{ app.dest_path }}/{{ app.version_dir }}/{{ app.docker_compose_context }}"
+
+- name: "docker-compose -f {{ app.docker_compose_file }} down"
+  become: yes
+  command: "docker-compose -f {{ app.docker_compose_file }} down"
+  args:
+    chdir: "{{ app.dest_path }}/{{ app.version_dir }}/{{ app.docker_compose_context }}"
+
+- name: "{{ execute_user.name }}で実行"
+  become: yes
+  become_user: "{{ execute_user.name }}"
+  command: "docker-compose -f {{ app.docker_compose_file }} up -d"
   args:
     chdir: "{{ app.dest_path }}/{{ app.version_dir }}/{{ app.docker_compose_context }}"

@@ -13,7 +13,7 @@ app:
   dest_path: /var/local/sunakan-app
   version_dir: current
   docker_compose_context: digdag-ls-docker
-  data_path: /var/hoge/fuga/data
+  data_path: /var/suna/bako
   env: vagrant
 
 execute_user:
