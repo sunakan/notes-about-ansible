@@ -23,7 +23,7 @@ volumes:
     name: sshfs_volume
     driver: vieux/sshfs:latest
     driver_opts:
-      sshcmd: ${SSHFS_USER}@${SSHFS_MASTER_HOST}:${DATA_HOME}
+      sshcmd: ${EXEC_USER}@${SSHFS_MASTER_HOST}:${DATA_HOME}
       IdentityFile: /root/.ssh/${SSHFS_IDENTITY_FILE}
       allow_other: ""
       #ro: ""
