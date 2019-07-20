@@ -1,0 +1,20 @@
+username: Digdag
+text: "${text}"
+color: "${color}"
+attachments:
+- fallback: ""
+  color: "${color}"
+  mrkdwn_in:
+  - text
+  - pretext
+  - fields
+  fields:
+  - title: Task Name
+    value: "${task_name}"
+    short: false
+  - title: Session Date
+    value: "${session_local_time}"
+    short: true
+  - title: ENV(dev/sta/pro)
+    value: "${ENV}" # You can use exported environment values
+    short: true

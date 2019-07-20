@@ -1,7 +1,7 @@
 timezone: Asia/Tokyo
 
 schedule:
-  minutes_interval>: ${MINUTES_INTERVAL}
+  minutes_interval>: 3
 
 _export:
   plugin:
